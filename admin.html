@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace admin — Sandoo Hair Beauty</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d9488">
+<link rel="icon" type="image/png" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .admin-wrap{max-width:780px;margin:0 auto}
+  .login-card,.panel-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:34px;box-shadow:var(--shadow-sm)}
+  .panel-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .panel-head h2{font-size:1.4rem}
+  .compteur{font-size:.86rem;color:var(--muted);margin-bottom:18px}
+  .admin-filter{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+  .admin-filter button{border:1.5px solid var(--border);background:#fff;border-radius:30px;padding:8px 16px;font-size:.84rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all .2s;font-family:inherit}
+  .admin-filter button.on{border-color:var(--teal);background:rgba(13,148,136,.08);color:var(--teal-deep)}
+  .insc-fields .f{font-size:.88rem;color:var(--ink);padding:3px 0}
+  .insc-fields .f span{color:var(--muted);font-weight:600}
+  .insc-date{font-size:.78rem;color:var(--muted);margin-top:10px}
+  .insc-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .badge{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:20px}
+  .badge.nouveau{background:rgba(241,115,106,.14);color:#c0392b}
+  .badge.traite{background:rgba(13,148,136,.14);color:var(--teal-deep)}
+  .insc-top .nom{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600}
+  .btn-done{background:var(--teal);color:#fff;border:0;border-radius:9px;padding:9px 15px;font-size:.83rem;font-weight:600;cursor:pointer;font-family:inherit}
+  .btn-done:hover{background:var(--teal-deep)}
+  .btn-rm{background:none;border:1.5px solid #f0c9c4;color:#c0392b;border-radius:9px;padding:9px 15px;font-size:.83rem;font-weight:600;cursor:pointer;font-family:inherit}
+  .btn-rm:hover{background:rgba(199,60,0,.06)}
+  .admin-empty{text-align:center;color:var(--muted);padding:36px 0;font-size:.9rem}
+  .admin-intro{text-align:center;margin-bottom:30px}
+  .admin-intro .lock{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--teal-deep));display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 14px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img class="mark" src="img/icon.png" alt="Sandoo Hair Beauty">
+      <span class="bn">Sandoo<small>Hair Beauty</small></span>
+    </a>
+    <nav class="menu" id="menu">
+        <a href="index.html">Accueil</a>
+        <a href="formations.html">Formations</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="inscription.html">Inscription</a>
+        <a href="contact.html">Contact</a>
+        <a href="inscription.html" class="cta">S'inscrire</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow center">Espace réservé</span>
+    <h1>Espace <em>administration</em></h1>
+    <p>Gérez les préinscriptions reçues sur le site.</p>
+  </div>
+</section>
+
+<section style="padding-top:24px">
+  <div class="wrap admin-wrap">
+
+    <!-- Note si Supabase non configuré -->
+    <div class="setup-note" id="setupNote" style="display:none">
+      <b>Configuration requise.</b> Pour activer l'espace admin, ouvrez le fichier
+      <code>js/supabase-config.js</code> et renseignez <code>SUPABASE_URL</code> et
+      <code>SUPABASE_ANON_KEY</code> (les mêmes que votre projet Supabase).
+    </div>
+
+    <!-- Connexion -->
+    <div class="login-card" id="loginCard" style="display:none">
+      <div class="admin-intro">
+        <div class="lock">🔒</div>
+        <h2 style="font-size:1.3rem;margin-bottom:6px">Connexion</h2>
+        <p style="color:var(--muted);font-size:.9rem">Réservé à l'administration de l'école.</p>
+      </div>
+      <form id="loginForm" class="form" style="padding:0;border:0;box-shadow:none">
+        <div class="status-msg" id="loginStatus"></div>
+        <div class="field"><label>Email</label><input type="email" id="admEmail" required placeholder="email administrateur"></div>
+        <div class="field"><label>Mot de passe</label><input type="password" id="admPass" required placeholder="••••••••"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Se connecter</button>
+      </form>
+    </div>
+
+    <!-- Panneau -->
+    <div class="panel-card" id="panel" style="display:none">
+      <div class="panel-head">
+        <h2>Préinscriptions</h2>
+        <button class="btn-logout" id="logoutBtn">Se déconnecter</button>
+      </div>
+      <div class="compteur" id="compteur">—</div>
+      <div class="admin-filter">
+        <button data-f="tous" class="on">Toutes</button>
+        <button data-f="nouveau">Nouvelles</button>
+        <button data-f="traite">Traitées</button>
+      </div>
+      <div class="status-msg" id="listStatus"></div>
+      <div id="liste"></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-bottom" style="border:0;justify-content:center">
+      <span>© <span class="year"></span> Sandoo Hair Beauty — Espace administration · Créé par SteFi Services</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
