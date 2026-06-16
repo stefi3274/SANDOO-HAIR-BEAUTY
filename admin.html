@@ -94,17 +94,58 @@
     <!-- Panneau -->
     <div class="panel-card" id="panel" style="display:none">
       <div class="panel-head">
-        <h2>Préinscriptions</h2>
+        <h2 id="panelTitle">Tableau de bord</h2>
         <button class="btn-logout" id="logoutBtn">Se déconnecter</button>
       </div>
-      <div class="compteur" id="compteur">—</div>
-      <div class="admin-filter">
-        <button data-f="tous" class="on">Toutes</button>
-        <button data-f="nouveau">Nouvelles</button>
-        <button data-f="traite">Traitées</button>
+
+      <!-- Onglets -->
+      <div class="admin-tabs">
+        <button class="tab on" data-tab="insc">📋 Préinscriptions</button>
+        <button class="tab" data-tab="gal">🖼️ Galerie</button>
       </div>
-      <div class="status-msg" id="listStatus"></div>
-      <div id="liste"></div>
+
+      <!-- Onglet inscriptions -->
+      <div id="tab-insc">
+        <div class="compteur" id="compteur">—</div>
+        <div class="admin-filter">
+          <button data-f="tous" class="on">Toutes</button>
+          <button data-f="nouveau">Nouvelles</button>
+          <button data-f="traite">Traitées</button>
+        </div>
+        <div class="status-msg" id="listStatus"></div>
+        <div id="liste"></div>
+      </div>
+
+      <!-- Onglet galerie -->
+      <div id="tab-gal" style="display:none">
+        <form id="galForm" class="gal-upload">
+          <div class="status-msg" id="galStatus"></div>
+          <div class="field">
+            <label>Photo *</label>
+            <input type="file" id="galFile" accept="image/*" required>
+          </div>
+          <div class="field">
+            <label>Titre <span style="font-weight:400;color:var(--muted)">(optionnel)</span></label>
+            <input type="text" id="galTitre" placeholder="Ex. Coupe dégradée">
+          </div>
+          <div class="field">
+            <label>Catégorie</label>
+            <select id="galCat">
+              <option value="">— Choisir —</option>
+              <option>Coupe</option>
+              <option>Coloration</option>
+              <option>Tresses</option>
+              <option>Soins</option>
+              <option>Maquillage</option>
+              <option>Onglerie</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" id="galSubmit" style="width:100%;justify-content:center">Ajouter la photo</button>
+        </form>
+        <div class="compteur" id="galCompteur" style="margin-top:24px">—</div>
+        <div id="galListe" class="gal-grid"></div>
+      </div>
     </div>
 
   </div>
@@ -121,6 +162,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
 <script src="js/admin.js"></script>
+<script src="js/galerie-admin.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

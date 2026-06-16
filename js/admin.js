@@ -19,6 +19,7 @@
   }
 
   const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  window._db = db; // partagé avec galerie-admin.js (même session)
   const $ = (id) => document.getElementById(id);
   const esc = (s) => (s || "").toString().replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
 
@@ -33,6 +34,7 @@
       loginCard.style.display = "none";
       panel.style.display = "block";
       charger();
+      if (window.chargerGalerie) window.chargerGalerie();
     } else {
       loginCard.style.display = "block";
       panel.style.display = "none";
