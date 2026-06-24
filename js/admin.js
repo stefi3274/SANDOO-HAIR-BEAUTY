@@ -35,6 +35,7 @@
       panel.style.display = "block";
       charger();
       if (window.chargerGalerie) window.chargerGalerie();
+      if (window.chargerPromos) window.chargerPromos();
     } else {
       loginCard.style.display = "block";
       panel.style.display = "none";

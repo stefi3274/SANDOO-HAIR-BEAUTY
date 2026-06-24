@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promotions & Flyers — Sandoo Hair Beauty</title>
+<meta name="description" content="Découvrez les promotions et flyers de Sandoo Hair Beauty, école de coiffure et beauté à Cap-Haïtien. Téléchargez et partagez nos offres de formation.">
+<meta property="og:title" content="Promotions & Flyers — Sandoo Hair Beauty">
+<meta property="og:description" content="Les offres et promotions de formation de Sandoo Hair Beauty à Cap-Haïtien.">
+<meta name="theme-color" content="#0d9488">
+<link rel="icon" type="image/png" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .promo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:26px;margin-top:10px}
+  .promo-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+  .promo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+  .promo-img{width:100%;background:var(--cream);display:block;cursor:zoom-in}
+  .promo-img img{width:100%;display:block}
+  .promo-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .promo-titre{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--ink)}
+  .promo-actions{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap}
+  .promo-actions a{flex:1;min-width:120px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 14px;border-radius:12px;font-size:.86rem;font-weight:600;text-decoration:none;transition:all .2s}
+  .btn-dl{background:var(--teal);color:#fff}
+  .btn-dl:hover{background:var(--teal-deep)}
+  .btn-share{background:#25d366;color:#fff}
+  .btn-share:hover{filter:brightness(1.06)}
+  .promo-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+  .promo-empty .ico{font-size:3rem;margin-bottom:14px}
+  /* Lightbox */
+  .lb{position:fixed;inset:0;background:rgba(16,42,44,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+  .lb.on{display:flex}
+  .lb img{max-width:96%;max-height:90vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb .close{position:absolute;top:18px;right:24px;color:#fff;font-size:2.4rem;cursor:pointer;line-height:1;background:none;border:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img class="mark" src="img/icon.png" alt="Sandoo Hair Beauty">
+      <span class="bn">Sandoo<small>Hair Beauty</small></span>
+    </a>
+    <nav class="menu" id="menu">
+        <a href="index.html">Accueil</a>
+        <a href="formations.html">Formations</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="inscription.html">Inscription</a>
+        <a href="contact.html">Contact</a>
+        <a href="promotions.html" class="active">Promotions</a>
+        <a href="inscription.html" class="cta">S'inscrire</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap reveal">
+    <span class="eyebrow center">Offres &amp; actualités</span>
+    <h1>Nos <em>promotions</em></h1>
+    <p>Découvrez nos offres de formation et nos flyers. Téléchargez-les et partagez-les autour de vous !</p>
+    <div class="crumbs"><a href="index.html">Accueil</a> › Promotions</div>
+  </div>
+</section>
+
+<section style="padding-top:48px">
+  <div class="wrap">
+    <div id="promoNote" class="promo-empty" style="display:none">
+      <div class="ico">📢</div>
+      <p>Aucune promotion en ligne pour le moment.<br>Revenez bientôt pour découvrir nos offres !</p>
+    </div>
+    <div class="promo-grid reveal" id="promoGrid"></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lb" id="lightbox">
+  <button class="close" id="lbClose" aria-label="Fermer">&times;</button>
+  <img src="" alt="Flyer" id="lbImg">
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="index.html" class="brand">
+          <img class="mark" src="img/icon.png" alt="Sandoo Hair Beauty">
+          <span class="bn">Sandoo<small>Hair Beauty</small></span>
+        </a>
+        <p>École de coiffure &amp; beauté à Cap-Haïtien. Nous formons la prochaine génération de professionnels du métier.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="inscription.html">Inscription</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="promotions.html">Promotions</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/50942458255" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:dorceusjamesy2@gmail.com">dorceusjamesy2@gmail.com</a></li>
+          <li><span style="color:#9fb6b3">Cap-Haïtien, Haïti</span></li>
+          <li><span style="color:#9fb6b3">Facebook · Instagram · TikTok</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span class="year"></span> Sandoo Hair Beauty — Tous droits réservés.</span>
+      <span>Créé par SteFi Services</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/50942458255?text=Bonjour%20Sandoo%20Hair%20Beauty" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.8L.3 31.6l8-2.1c2.3 1.2 4.9 1.9 7.7 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.2c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2-2-4.4-2-6.8C3.2 9 9 3.2 16 3.2S28.8 9 28.8 16 23 28.6 16 28.6zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2s-1 1.3-1.2 1.5c-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4 6.4 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
+  <span class="t">Écrivez-nous</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/promotions-public.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

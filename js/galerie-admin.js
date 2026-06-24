@@ -11,15 +11,16 @@
   const esc = (s) => (s || "").toString().replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
   function status(el, msg, type) { if (el) { el.textContent = msg; el.className = "status-msg " + (type || ""); } }
 
-  // --- Onglets (Inscriptions / Galerie) ---
+  // --- Onglets (Inscriptions / Galerie / Promotions) ---
   document.querySelectorAll(".admin-tabs .tab").forEach(tab => {
     tab.addEventListener("click", () => {
       const t = tab.getAttribute("data-tab");
       document.querySelectorAll(".admin-tabs .tab").forEach(x => x.classList.toggle("on", x === tab));
       $("tab-insc").style.display = (t === "insc") ? "block" : "none";
       $("tab-gal").style.display  = (t === "gal")  ? "block" : "none";
+      const tp = $("tab-promo"); if (tp) tp.style.display = (t === "promo") ? "block" : "none";
       const title = $("panelTitle");
-      if (title) title.textContent = (t === "gal") ? "Galerie photos" : "Préinscriptions";
+      if (title) title.textContent = (t === "gal") ? "Galerie photos" : (t === "promo") ? "Promotions & flyers" : "Préinscriptions";
     });
   });
 

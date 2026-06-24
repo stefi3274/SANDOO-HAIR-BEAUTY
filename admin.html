@@ -102,6 +102,7 @@
       <div class="admin-tabs">
         <button class="tab on" data-tab="insc">📋 Préinscriptions</button>
         <button class="tab" data-tab="gal">🖼️ Galerie</button>
+        <button class="tab" data-tab="promo">📢 Promotions</button>
       </div>
 
       <!-- Onglet inscriptions -->
@@ -146,6 +147,24 @@
         <div class="compteur" id="galCompteur" style="margin-top:24px">—</div>
         <div id="galListe" class="gal-grid"></div>
       </div>
+
+      <!-- Onglet promotions -->
+      <div id="tab-promo" style="display:none">
+        <form id="promoForm" class="gal-upload">
+          <div class="status-msg" id="promoStatus"></div>
+          <div class="field">
+            <label>Flyer / image de promotion *</label>
+            <input type="file" id="promoFile" accept="image/*" required>
+          </div>
+          <div class="field">
+            <label>Titre <span style="font-weight:400;color:var(--muted)">(optionnel)</span></label>
+            <input type="text" id="promoTitre" placeholder="Ex. Promo rentrée : -20% sur la formation coupe">
+          </div>
+          <button type="submit" class="btn btn-primary" id="promoSubmit" style="width:100%;justify-content:center">Publier le flyer</button>
+        </form>
+        <div class="compteur" id="promoCompteur" style="margin-top:24px">—</div>
+        <div id="promoListe" class="gal-grid"></div>
+      </div>
     </div>
 
   </div>
@@ -163,6 +182,7 @@
 <script src="js/supabase-config.js"></script>
 <script src="js/admin.js"></script>
 <script src="js/galerie-admin.js"></script>
+<script src="js/promotions-admin.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
