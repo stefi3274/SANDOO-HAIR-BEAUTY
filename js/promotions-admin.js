@@ -1,11 +1,11 @@
 /* ============================================================
    Promotions admin — Sandoo Hair Beauty
-   Publication de flyers dans le bucket "images", dossier slug/promos/.
+   Publication de flyers dans le bucket "Images", dossier slug/promos/.
    Réutilise la session Supabase ouverte par admin.js (window._db).
    ============================================================ */
 
 (function () {
-  const BUCKET = "images";
+  const BUCKET = "Images";
 
   const $ = (id) => document.getElementById(id);
   const esc = (s) => (s || "").toString().replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));

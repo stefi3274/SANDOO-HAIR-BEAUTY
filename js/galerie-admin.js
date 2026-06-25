@@ -1,11 +1,11 @@
 /* ============================================================
    Galerie admin — Sandoo Hair Beauty
-   Upload de photos dans le bucket "images", dossier = slug entreprise.
+   Upload de photos dans le bucket "Images", dossier = slug entreprise.
    Réutilise la session Supabase ouverte par admin.js (window._db).
    ============================================================ */
 
 (function () {
-  const BUCKET = "images";
+  const BUCKET = "Images";
 
   const $ = (id) => document.getElementById(id);
   const esc = (s) => (s || "").toString().replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
